@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blagoday Vision — Sound Beyond the Horizon</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;700;900&family=Rajdhani:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#000508;color:#b8ddd0;font-family:'Rajdhani',sans-serif;overflow-x:hidden;min-height:100vh;cursor:crosshair}
+:root{
+  --cyan:#00e8ff;--teal:#00b8cc;--dim-cyan:#00e8ff22;
+  --border:#00e8ff18;--border-mid:#00e8ff33;
+  --text:#7aadb8;--text-bright:#b8ddd0;
+}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:997;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px)}
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,232,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,232,255,0.03) 1px,transparent 1px);background-size:60px 60px;animation:gridmove 20s linear infinite}
+@keyframes gridmove{from{background-position:0 0}to{background-position:60px 60px}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px)}
+.orb1{width:400px;height:400px;background:rgba(0,120,160,0.12);top:-100px;right:-100px;animation:f1 12s ease-in-out infinite}
+.orb2{width:300px;height:300px;background:rgba(0,80,120,0.1);bottom:10%;left:-50px;animation:f2 15s ease-in-out infinite}
+.orb3{width:200px;height:200px;background:rgba(0,180,200,0.07);top:40%;left:40%;animation:f3 9s ease-in-out infinite}
+@keyframes f1{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,40px)}}
+@keyframes f2{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}}
+@keyframes f3{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,20px)}}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 3rem;border-bottom:1px solid var(--border);position:fixed;top:0;left:0;right:0;background:rgba(0,5,8,0.9);backdrop-filter:blur(14px);z-index:100}
+.logo-wrap{display:flex;flex-direction:column;gap:2px}
+.logo{font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;color:var(--cyan);letter-spacing:.35em}
+.logo-sub{font-family:'Share Tech Mono',monospace;font-size:.5rem;color:var(--text);letter-spacing:.25em}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{color:var(--text);text-decoration:none;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.2em;transition:color .2s;text-transform:uppercase}
+.nav-links a:hover{color:var(--cyan)}
+.nav-cta{border:1px solid var(--border-mid);padding:.35rem .9rem;color:var(--cyan) !important}
+.nav-cta:hover{background:var(--dim-cyan) !important}
+
+.lang-switcher{display:flex;border:1px solid var(--border-mid);overflow:hidden;flex-shrink:0}
+.lang-btn{background:none;border:none;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.15em;padding:.35rem .8rem;color:var(--text);transition:all .2s;line-height:1}
+.lang-btn.active{background:var(--cyan);color:#000;font-weight:700}
+.lang-btn:not(.active):hover{color:var(--cyan)}
+.lang-sep{width:1px;background:var(--border-mid)}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 3rem 5rem;position:relative;z-index:1;border-bottom:1px solid var(--border)}
+.hero-eyebrow{font-family:'Share Tech Mono',monospace;font-size:.63rem;color:var(--teal);letter-spacing:.35em;margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
+.blink{animation:blink 1.2s step-start infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero h1{font-family:'Orbitron',monospace;font-size:clamp(2.2rem,7vw,6rem);font-weight:900;line-height:1.02;letter-spacing:.04em;margin-bottom:1.5rem;text-transform:uppercase}
+.line1{color:#fff;display:block}
+.line2{color:var(--cyan);display:block;text-shadow:0 0 40px rgba(0,232,255,0.3);animation:glitch 5s infinite}
+.line3{color:#1a3a44;display:block;font-size:.55em;letter-spacing:.15em;font-weight:300;margin-top:.5rem}
+@keyframes glitch{0%,90%,100%{transform:none;text-shadow:0 0 40px rgba(0,232,255,0.3)}91%{transform:skewX(-3deg);text-shadow:3px 0 var(--cyan)}92%{transform:skewX(2deg)}93%{transform:none}}
+.hero-desc{color:var(--text);font-size:1.1rem;max-width:560px;line-height:1.8;font-weight:300;margin-bottom:2.5rem}
+.hero-tags{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.tag-pill{font-family:'Share Tech Mono',monospace;font-size:.56rem;padding:.28rem .75rem;border:1px solid var(--border-mid);color:var(--teal);letter-spacing:.1em}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--cyan);color:#000;font-family:'Orbitron',monospace;font-size:.68rem;font-weight:700;padding:.75rem 1.8rem;letter-spacing:.2em;text-decoration:none;transition:all .2s;text-transform:uppercase;display:inline-block}
+.btn-primary:hover{background:#fff}
+.btn-ghost{border:1px solid var(--border-mid);color:var(--cyan);font-family:'Share Tech Mono',monospace;font-size:.68rem;padding:.75rem 1.8rem;letter-spacing:.2em;text-decoration:none;transition:all .2s;text-transform:uppercase;display:inline-block}
+.btn-ghost:hover{background:var(--dim-cyan)}
+
+.stats-bar{display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:1}
+.stat{flex:1;padding:1.4rem 1.5rem;border-right:1px solid var(--border);text-align:center}
+.stat:last-child{border-right:none}
+.stat-num{font-family:'Orbitron',monospace;font-size:1.5rem;color:var(--cyan);font-weight:700;display:block;margin-bottom:.2rem}
+.stat-label{font-family:'Share Tech Mono',monospace;font-size:.56rem;color:var(--text);letter-spacing:.15em}
+
+.section{padding:5rem 3rem;position:relative;z-index:1}
+.section-header{margin-bottom:2.5rem}
+.s-tag{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--teal);letter-spacing:.3em;margin-bottom:.7rem;display:flex;align-items:center;gap:.7rem}
+.s-tag::before{content:'//'}
+.s-title{font-family:'Orbitron',monospace;font-size:1.5rem;color:#fff;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem}
+.video-card{border:1px solid var(--border);background:rgba(0,20,30,0.5);transition:all .3s;position:relative;overflow:hidden}
+.video-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .3s}
+.video-card:hover{border-color:var(--border-mid);transform:translateY(-3px)}
+.video-card:hover::before{opacity:1}
+.video-thumb{position:relative;aspect-ratio:16/9;background:#000c14}
+.video-thumb iframe{width:100%;height:100%;border:none;display:block}
+.video-meta{padding:1rem 1.2rem}
+.video-title{font-family:'Rajdhani',sans-serif;font-size:.95rem;font-weight:600;color:#c8e8f0;margin-bottom:.35rem;line-height:1.4}
+.video-desc{font-family:'Share Tech Mono',monospace;font-size:.57rem;color:#2a5a68;letter-spacing:.05em;line-height:1.5}
+.vtag{display:inline-block;margin-top:.55rem;font-family:'Share Tech Mono',monospace;font-size:.53rem;padding:.18rem .55rem;border:1px solid var(--border);color:var(--teal);letter-spacing:.1em}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.about-text{color:var(--text);font-size:1rem;line-height:1.85;font-weight:300}
+.about-text p+p{margin-top:1.1rem}
+.about-text strong{color:var(--cyan);font-weight:500}
+.features-col{display:flex;flex-direction:column;gap:.75rem}
+.feature{display:flex;align-items:flex-start;gap:1rem;padding:.9rem 1.1rem;border:1px solid var(--border);background:rgba(0,15,25,0.5)}
+.feature-icon{font-size:1.1rem;flex-shrink:0;margin-top:.05rem}
+.feature-title{font-family:'Share Tech Mono',monospace;font-size:.67rem;color:var(--cyan);letter-spacing:.1em;margin-bottom:.25rem}
+.feature-desc{font-size:.83rem;color:var(--text);line-height:1.5}
+
+.vibes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem}
+.vibe{border:1px solid var(--border);padding:1.2rem 1rem;text-align:center;transition:all .3s;cursor:default}
+.vibe:hover{border-color:var(--border-mid);background:rgba(0,232,255,0.04)}
+.vibe-icon{font-size:1.5rem;margin-bottom:.55rem;display:block}
+.vibe-name{font-family:'Orbitron',monospace;font-size:.58rem;color:#c8e8f0;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.28rem}
+.vibe-desc{font-size:.72rem;color:var(--text)}
+
+.marquee-wrap{padding:.9rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;position:relative;z-index:1}
+.marquee{display:flex;gap:3rem;animation:marquee 32s linear infinite;white-space:nowrap}
+.marquee-item{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#1a4050;letter-spacing:.2em;flex-shrink:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.cta-section{padding:6rem 3rem;text-align:center;position:relative;z-index:1;border-top:1px solid var(--border)}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(0,100,140,0.08),transparent);pointer-events:none}
+.cta-title{font-family:'Orbitron',monospace;font-size:clamp(1.4rem,4vw,2.8rem);color:#fff;font-weight:900;letter-spacing:.08em;margin-bottom:1rem;text-transform:uppercase;line-height:1.15}
+.cta-sub{color:var(--text);font-size:1rem;margin-bottom:2.5rem;font-weight:300}
+
+footer{padding:1.8rem 3rem;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;position:relative;z-index:1}
+.footer-logo{font-family:'Orbitron',monospace;font-size:.72rem;color:var(--cyan);letter-spacing:.3em}
+.footer-center{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:#1a4050;text-align:center;letter-spacing:.15em}
+.footer-links{display:flex;gap:1.5rem;justify-content:flex-end}
+.footer-links a{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:#1a4050;text-decoration:none;letter-spacing:.15em;transition:color .2s}
+.footer-links a:hover{color:var(--cyan)}
+hr.divider{border:none;border-top:1px solid var(--border);position:relative;z-index:1}
+
+.fade-out{opacity:0;transition:opacity .18s ease}
+.fade-in{opacity:1;transition:opacity .18s ease}
+
+@media(max-width:820px){
+  nav{padding:1rem 1.2rem;flex-wrap:wrap;gap:.7rem}
+  .nav-links{gap:1rem}
+  .hero{padding:7rem 1.2rem 4rem}
+  .section{padding:3rem 1.2rem}
+  .about-grid{grid-template-columns:1fr}
+  .stats-bar{flex-wrap:wrap}
+  .stat{min-width:50%;border-right:none;border-bottom:1px solid var(--border)}
+  footer{grid-template-columns:1fr;gap:.7rem;text-align:center}
+  .footer-links{justify-content:center}
+}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+<div class="grid-bg"></div>
+
+<nav>
+  <div class="logo-wrap">
+    <div class="logo">Blagoday Vision</div>
+    <div class="logo-sub" data-t="nav-tagline"></div>
+  </div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#videos" data-t="nav-videos"></a>
+      <a href="#about" data-t="nav-about"></a>
+      <a href="#vibes" data-t="nav-vibes"></a>
+      <a href="https://www.youtube.com/@BlagodayVision" target="_blank" class="nav-cta">YouTube ↗</a>
+    </div>
+    <div class="lang-switcher">
+      <button class="lang-btn" id="btn-uk" onclick="setLang('uk')">UA</button>
+      <div class="lang-sep"></div>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow"><span class="blink">▮</span><span data-t="hero-eyebrow"></span></div>
+  <h1>
+    <span class="line1">BLAGODAY</span>
+    <span class="line2">VISION</span>
+    <span class="line3" data-t="hero-h1-sub"></span>
+  </h1>
+  <p class="hero-desc" data-t="hero-desc"></p>
+  <div class="hero-tags">
+    <span class="tag-pill">🌌 Cosmic Ambient</span>
+    <span class="tag-pill">🌃 Neon Megacities</span>
+    <span class="tag-pill">🤖 AI-Driven Worlds</span>
+    <span class="tag-pill">🚀 Sci-Fi 2250</span>
+    <span class="tag-pill">🎥 4K Cinematic</span>
+  </div>
+  <div class="hero-btns">
+    <a href="https://www.youtube.com/@BlagodayVision" target="_blank" class="btn-primary" data-t="hero-btn1"></a>
+    <a href="#videos" class="btn-ghost" data-t="hero-btn2"></a>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num">4K</span><span class="stat-label" data-t="stat1"></span></div>
+  <div class="stat"><span class="stat-num">∞</span><span class="stat-label" data-t="stat2"></span></div>
+  <div class="stat"><span class="stat-num">2250</span><span class="stat-label" data-t="stat3"></span></div>
+  <div class="stat"><span class="stat-num">AI</span><span class="stat-label" data-t="stat4"></span></div>
+</div>
+
+<div class="marquee-wrap"><div class="marquee">
+  <span class="marquee-item">DEEP MELODIC AMBIENT</span><span class="marquee-item">///</span>
+  <span class="marquee-item">FUTURISTIC SOUNDSCAPES</span><span class="marquee-item">///</span>
+  <span class="marquee-item">NEON HORIZONS</span><span class="marquee-item">///</span>
+  <span class="marquee-item">ADVANCED CIVILIZATIONS</span><span class="marquee-item">///</span>
+  <span class="marquee-item">INTERSTELLAR ATMOSPHERES</span><span class="marquee-item">///</span>
+  <span class="marquee-item">LIFE IN 2250</span><span class="marquee-item">///</span>
+  <span class="marquee-item">AI CINEMATIC WORLDS</span><span class="marquee-item">///</span>
+  <span class="marquee-item">DEEP MELODIC AMBIENT</span><span class="marquee-item">///</span>
+  <span class="marquee-item">FUTURISTIC SOUNDSCAPES</span><span class="marquee-item">///</span>
+  <span class="marquee-item">NEON HORIZONS</span><span class="marquee-item">///</span>
+  <span class="marquee-item">ADVANCED CIVILIZATIONS</span><span class="marquee-item">///</span>
+  <span class="marquee-item">INTERSTELLAR ATMOSPHERES</span><span class="marquee-item">///</span>
+  <span class="marquee-item">LIFE IN 2250</span><span class="marquee-item">///</span>
+  <span class="marquee-item">AI CINEMATIC WORLDS</span><span class="marquee-item">///</span>
+</div></div>
+
+<section class="section" id="videos">
+  <div class="section-header">
+    <div class="s-tag" data-t="videos-tag"></div>
+    <div class="s-title" data-t="videos-title"></div>
+  </div>
+  <div class="video-grid" id="vgrid"></div>
+  <div style="text-align:center;margin-top:2.5rem">
+    <a href="https://www.youtube.com/@BlagodayVision" target="_blank" class="btn-ghost" data-t="videos-more"></a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="about">
+  <div class="section-header">
+    <div class="s-tag" data-t="about-tag"></div>
+    <div class="s-title" data-t="about-title"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p data-t="about-p1"></p>
+      <p data-t="about-p2"></p>
+      <p data-t="about-p3"></p>
+      <p data-t="about-p4"></p>
+    </div>
+    <div class="features-col">
+      <div class="feature"><span class="feature-icon">🌌</span><div><div class="feature-title">Cosmic &amp; Interstellar</div><div class="feature-desc" data-t="feat1"></div></div></div>
+      <div class="feature"><span class="feature-icon">🌃</span><div><div class="feature-title">Neon Megacities</div><div class="feature-desc" data-t="feat2"></div></div></div>
+      <div class="feature"><span class="feature-icon">🤖</span><div><div class="feature-title">AI-Driven Worlds</div><div class="feature-desc" data-t="feat3"></div></div></div>
+      <div class="feature"><span class="feature-icon">🎥</span><div><div class="feature-title">Cinematic 4K AI Visuals</div><div class="feature-desc" data-t="feat4"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="vibes">
+  <div class="section-header">
+    <div class="s-tag" data-t="vibes-tag"></div>
+    <div class="s-title" data-t="vibes-title"></div>
+  </div>
+  <div class="vibes-grid">
+    <div class="vibe"><span class="vibe-icon">🎯</span><div class="vibe-name">Deep Focus</div><div class="vibe-desc" data-t="vibe1"></div></div>
+    <div class="vibe"><span class="vibe-icon">😴</span><div class="vibe-name">Sleep Drift</div><div class="vibe-desc" data-t="vibe2"></div></div>
+    <div class="vibe"><span class="vibe-icon">🚀</span><div class="vibe-name">Sci-Fi Journey</div><div class="vibe-desc" data-t="vibe3"></div></div>
+    <div class="vibe"><span class="vibe-icon">🌆</span><div class="vibe-name">City 2250</div><div class="vibe-desc" data-t="vibe4"></div></div>
+    <div class="vibe"><span class="vibe-icon">🌿</span><div class="vibe-name">Solarpunk</div><div class="vibe-desc" data-t="vibe5"></div></div>
+    <div class="vibe"><span class="vibe-icon">🌊</span><div class="vibe-name">Escape</div><div class="vibe-desc" data-t="vibe6"></div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="cta-section">
+  <div class="s-tag" style="justify-content:center;margin-bottom:1.4rem">// SUBSCRIBE TO THE SIGNAL</div>
+  <div class="cta-title" data-t="cta-title"></div>
+  <p class="cta-sub" data-t="cta-sub"></p>
+  <a href="https://www.youtube.com/@BlagodayVision" target="_blank" class="btn-primary" data-t="cta-btn"></a>
+</section>
+
+<footer>
+  <div><div class="footer-logo">Blagoday Vision</div></div>
+  <div class="footer-center">// SOUND &amp; FUTURE AS ONE — 2250</div>
+  <div class="footer-links"><a href="https://www.youtube.com/@BlagodayVision" target="_blank">YouTube</a></div>
+</footer>
+
+<script>
+const T = {
+  uk: {
+    'nav-tagline':  '// ЗВУК ЗА ГОРИЗОНТОМ',
+    'nav-videos':   'Відео',
+    'nav-about':    'Про канал',
+    'nav-vibes':    'Атмосфери',
+    'hero-eyebrow': 'КІНЕМАТОГРАФІЧНИЙ ЕМБІЄНТ — ЖИТТЯ В 2250',
+    'hero-h1-sub':  'Світ за горизонтом',
+    'hero-desc':    'Занурся у всесвіт іммерсивної релаксації та кінематографічного звуку. Глибокий мелодійний ембієнт, неонові мегаполіси та прогресивні цивілізації 2250 року — все в одному місці.',
+    'hero-btn1':    'Відкрити канал',
+    'hero-btn2':    'Дивитись відео ↓',
+    'stat1':'Кінематографічна якість','stat2':'Ембієнт-подорожі','stat3':'Рік візії','stat4':'AI-Візуали',
+    'videos-tag':'АРХІВ СИГНАЛІВ','videos-title':'Кінематографічні подорожі','videos-more':'Всі відео на YouTube ↗',
+    'about-tag':'ПРО КАНАЛ','about-title':'Що таке Blagoday Vision',
+    'about-p1':'Ласкаво просимо до <strong>Blagoday Vision</strong> — світу за горизонтом, де звук і майбутнє стають єдиним цілим.',
+    'about-p2':'Це твій портал в іммерсивну релаксацію, натхненну завтрашнім днем. Ми поєднуємо глибокий мелодійний ембієнт з футуристичною архітектурою, неоновими горизонтами та прогресивними цивілізаціями.',
+    'about-p3':'Чи потрібен тобі <strong>фокус, навчання, сон або втеча</strong> — наш канал пропонує спокійний притулок у серці майбутнього.',
+    'about-p4':'Кожне відео — це кінематографічна подорож у <strong>Життя в 2250 році</strong>: сяючі мегаполіси та заспокійлива технологічна гармонія.',
+    'feat1':'Космічні та міжзоряні атмосфери, що переносять тебе за межі Землі',
+    'feat2':'Неонові мегаполіси та футуристичні горизонти 2250 року',
+    'feat3':'Світи, керовані штучним інтелектом та передовими технологіями',
+    'feat4':'Кінематографічні AI-візуали в 4K разом із тривалими ембієнт-міксами',
+    'vibes-tag':'АТМОСФЕРИ','vibes-title':'Обери свою атмосферу',
+    'vibe1':'Концентрація та продуктивність','vibe2':"М'який сон і відпочинок",
+    'vibe3':'Подорож між зорями','vibe4':'Мегаполіс майбутнього',
+    'vibe5':'Органічна архітектура','vibe6':'Вихід із реального часу',
+    'cta-title':'Готовий до подорожі<br>у 2250 рік?',
+    'cta-sub':'Нові кінематографічні мандрівки та тривалі ембієнт-мікси завантажуються регулярно.',
+    'cta-btn':'Підписатись на YouTube ↗',
+    videos:[
+      {id:'jfKfPfyJRdk',title:'Deep Ambient — Neon Megacity 2250',desc:'Іммерсивна подорож крізь футуристичний мегаполіс',tag:'DEEP FOCUS'},
+      {id:'5qap5aO4i9A',title:'Cosmic Soundscape — Interstellar Horizons',desc:'Міжзоряні атмосфери та заспокійливі технологічні гармонії',tag:'COSMIC AMBIENT'},
+      {id:'lTRiuFIWV54',title:'AI World — Smart City at Dawn',desc:'Світ, керований штучним інтелектом — розвид майбутньої Землі',tag:'SCI-FI 2250'},
+    ]
+  },
+  en: {
+    'nav-tagline':  '// SOUND BEYOND THE HORIZON',
+    'nav-videos':   'Videos',
+    'nav-about':    'About',
+    'nav-vibes':    'Atmospheres',
+    'hero-eyebrow': 'CINEMATIC AMBIENT — LIFE IN 2250',
+    'hero-h1-sub':  'A World Beyond the Horizon',
+    'hero-desc':    'Immerse yourself in a universe of relaxation and cinematic sound. Deep melodic ambient, neon megacities, and advanced civilizations of 2250 — all in one place.',
+    'hero-btn1':    'Open Channel',
+    'hero-btn2':    'Watch Videos ↓',
+    'stat1':'Cinematic Quality','stat2':'Ambient Journeys','stat3':'Year of Vision','stat4':'AI-Generated Visuals',
+    'videos-tag':'SIGNAL ARCHIVE','videos-title':'Cinematic Journeys','videos-more':'All Videos on YouTube ↗',
+    'about-tag':'ABOUT THE ENTITY','about-title':'What is Blagoday Vision',
+    'about-p1':'Welcome to <strong>Blagoday Vision</strong> — a world beyond the horizon, where sound and the future become one.',
+    'about-p2':'This is your gateway to immersive relaxation inspired by tomorrow. We blend deep melodic ambient with visionary architecture, neon horizons, and advanced civilizations to create a peaceful digital universe.',
+    'about-p3':'Whether you need to <strong>focus, study, sleep, or escape</strong> — our channel offers a serene sanctuary in the heart of the future.',
+    'about-p4':'Every video is a cinematic journey into <strong>Life in 2250</strong>: luminous megacities and soothing technological harmony.',
+    'feat1':'Cosmic and interstellar atmospheres that take you beyond Earth',
+    'feat2':'Neon megacities and futuristic horizons of 2250',
+    'feat3':'Worlds driven by artificial intelligence and advanced technologies',
+    'feat4':'Cinematic AI visuals in 4K with long-play ambient mixes',
+    'vibes-tag':'ATMOSPHERES','vibes-title':'Choose Your Atmosphere',
+    'vibe1':'Concentration and productivity','vibe2':'Soft sleep and rest',
+    'vibe3':'Journey between the stars','vibe4':'The megacity of the future',
+    'vibe5':'Organic architecture','vibe6':'Escape from real time',
+    'cta-title':'Ready for a Journey<br>to 2250?',
+    'cta-sub':'New cinematic journeys and long-play ambient mixes are uploaded regularly.',
+    'cta-btn':'Subscribe on YouTube ↗',
+    videos:[
+      {id:'jfKfPfyJRdk',title:'Deep Ambient — Neon Megacity 2250',desc:'An immersive journey through the futuristic megacity',tag:'DEEP FOCUS'},
+      {id:'5qap5aO4i9A',title:'Cosmic Soundscape — Interstellar Horizons',desc:'Interstellar atmospheres and soothing technological harmonies',tag:'COSMIC AMBIENT'},
+      {id:'lTRiuFIWV54',title:'AI World — Smart City at Dawn',desc:'An AI-driven world — a glimpse of future Earth',tag:'SCI-FI 2250'},
+    ]
+  }
+};
+
+let lang = 'uk';
+
+function buildVideos(l) {
+  const grid = document.getElementById('vgrid');
+  grid.innerHTML = '';
+  T[l].videos.forEach(v => {
+    const c = document.createElement('div');
+    c.className = 'video-card';
+    c.innerHTML = `<div class="video-thumb"><iframe src="https://www.youtube.com/embed/${v.id}?rel=0&modestbranding=1&color=white" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy" title="${v.title}"></iframe></div><div class="video-meta"><div class="video-title">${v.title}</div><div class="video-desc">${v.desc}</div><span class="vtag">${v.tag}</span></div>`;
+    grid.appendChild(c);
+  });
+}
+
+function applyLang(l) {
+  const d = T[l];
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const k = el.getAttribute('data-t');
+    if (d[k] !== undefined) el.innerHTML = d[k];
+  });
+  buildVideos(l);
+  document.getElementById('btn-uk').classList.toggle('active', l === 'uk');
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  document.documentElement.lang = l;
+}
+
+function setLang(l) {
+  if (l === lang) return;
+  lang = l;
+  const all = document.querySelectorAll('[data-t], .video-grid');
+  all.forEach(el => el.classList.add('fade-out'));
+  setTimeout(() => {
+    applyLang(l);
+    all.forEach(el => { el.classList.remove('fade-out'); el.classList.add('fade-in'); });
+    setTimeout(() => all.forEach(el => el.classList.remove('fade-in')), 200);
+  }, 180);
+}
+
+// Init
+applyLang('uk');
+</script>
+</body>
+</html>
