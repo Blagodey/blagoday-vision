@@ -7,15 +7,26 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@700;900&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; color-scheme: dark; }
+:root {
+  --cyan: #00f0ff;
+  --pink: #f00aff;
+  --purple: #9d00ff;
+  --green: #00ff9f;
+}
 body {
-  background: #0a0a0a;
+  background: #000;
   color: #fff;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
 }
+/* Custom scrollbar like ARCHONODE */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: rgba(0,240,255,0.3); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,240,255,0.6); }
 
-/* GRID BACKGROUND */
+/* GRID BACKGROUND - exact ARCHONODE style */
 body::before {
   content: '';
   position: fixed;
@@ -23,9 +34,9 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* NAV */
@@ -39,7 +50,7 @@ nav {
   padding: 1rem 2.5rem;
   background: rgba(10,10,10,0.85);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .logo {
   font-family: 'JetBrains Mono', monospace;
@@ -123,7 +134,7 @@ nav {
   padding: 9rem 2.5rem 5rem;
   position: relative;
   z-index: 1;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .hero-eyebrow {
   font-family: 'JetBrains Mono', monospace;
@@ -158,7 +169,7 @@ nav {
   display: inline-block;
   width: 6px;
   height: .85em;
-  background: #00e5ff;
+  background: var(--cyan);
   margin-left: 8px;
   vertical-align: middle;
   animation: cur .7s step-end infinite;
@@ -209,7 +220,7 @@ nav {
   display: inline-block;
   transition: background .2s;
 }
-.btn-primary:hover { background: #00e5ff; }
+.btn-primary:hover { background: var(--cyan); }
 .btn-ghost {
   border: 1px solid rgba(255,255,255,0.3);
   color: #fff;
@@ -227,8 +238,8 @@ nav {
 /* STATS */
 .stats-bar {
   display: flex;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   position: relative;
   z-index: 1;
 }
@@ -258,7 +269,7 @@ nav {
 /* MARQUEE */
 .marquee-wrap {
   padding: .8rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -314,7 +325,7 @@ nav {
 @media(max-width:600px){.video-grid{grid-template-columns:1fr}}
 
 .video-card {
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
   background: #111;
   cursor: pointer;
   overflow: hidden;
@@ -430,7 +441,7 @@ nav {
   align-items: flex-start;
   gap: 1rem;
   padding: 1rem 1.1rem;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
   background: #111;
   transition: border-color .2s;
 }
@@ -457,7 +468,7 @@ nav {
   gap: .5rem;
 }
 .vibe {
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
   padding: 1.5rem 1rem;
   text-align: center;
   background: #111;
@@ -487,7 +498,7 @@ nav {
   text-align: center;
   position: relative;
   z-index: 1;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 .cta-eyebrow {
   font-family: 'JetBrains Mono', monospace;
@@ -518,7 +529,7 @@ nav {
 /* FOOTER */
 footer {
   padding: 3rem 2.5rem;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.1);
   position: relative;
   z-index: 1;
 }
@@ -528,7 +539,7 @@ footer {
   align-items: center;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .footer-logo {
   font-family: 'JetBrains Mono', monospace;
@@ -578,7 +589,7 @@ footer {
 
 hr.divider {
   border: none;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.1);
   position: relative;
   z-index: 1;
 }
